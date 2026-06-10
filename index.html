@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="nl">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-  <title>Feed Biscuit! 🐶</title>
+  <title>Voer Koekje! 🐶</title>
   <style>
     * {
       box-sizing: border-box;
@@ -315,10 +315,10 @@
 
 <!-- ══════════════════ TITLE ══════════════════ -->
 <div id="title-screen" class="screen active">
-  <h1>Feed Biscuit! 🐶</h1>
+  <h1>Voer Koekje! 🐶</h1>
   <div class="puppy-hero">🐶</div>
-  <p class="subtitle">Biscuit is hungry!<br>Count his treats and feed him 🦴</p>
-  <button class="big-btn" onclick="startGame()">LET'S PLAY! 🎮</button>
+  <p class="subtitle">Koekje heeft honger!<br>Tel zijn lekkernijen en geef hem eten 🦴</p>
+  <button class="big-btn" onclick="startGame()">SPELEN! 🎮</button>
 </div>
 
 <!-- ══════════════════ GAME ═══════════════════ -->
@@ -332,7 +332,7 @@
 
   <div class="puppy-area">
     <span id="puppy">🐶</span>
-    <div id="speech-bubble">I'm hungry! 😋</div>
+    <div id="speech-bubble">Ik heb honger! 😋</div>
   </div>
 
   <div id="food-display">
@@ -351,11 +351,11 @@
 
 <!-- ══════════════════ WIN ════════════════════ -->
 <div id="win-screen" class="screen">
-  <h1>Amazing! 🎉</h1>
+  <h1>Geweldig! 🎉</h1>
   <div class="puppy-hero">🐕</div>
   <div id="win-stars"></div>
   <p id="win-message"></p>
-  <button class="big-btn" onclick="startGame()">PLAY AGAIN! 🎮</button>
+  <button class="big-btn" onclick="startGame()">NOG EEN KEER! 🎮</button>
 </div>
 
 <script>
@@ -427,8 +427,8 @@ function renderProblem(prob) {
 
   if (prob.type === 'count') {
     foodEl.textContent = prob.food.repeat(prob.n);
-    qEl.textContent    = `How many ${prob.food}?`;
-    bubble.textContent = 'How many can you count? 🤔';
+    qEl.textContent    = `Hoeveel ${prob.food}?`;
+    bubble.textContent = 'Hoeveel kun jij tellen? 🤔';
   } else {
     // Show two visual groups separated by a +
     const plus = ' ➕ ';
@@ -437,7 +437,7 @@ function renderProblem(prob) {
       '<span style="font-size:0.6em;vertical-align:middle">' + plus + '</span>' +
       '<span>' + prob.food.repeat(prob.b) + '</span>';
     qEl.textContent = `${prob.a} + ${prob.b} = ?`;
-    bubble.textContent = 'Count them all together! 🤔';
+    bubble.textContent = 'Tel ze allemaal op! 🤔';
   }
 
   // Build 4 shuffled answer choices
@@ -517,14 +517,14 @@ function checkAnswer(btn) {
     btn.disabled = true;          // remove this wrong choice
     puppy.textContent = '😢';
     puppy.classList.add('shake');
-    bubble.textContent = 'Oops! Try again 💪';
+    bubble.textContent = 'Oeps! Probeer nog eens 💪';
     playTone('wrong');
     flashScreen();
 
     setTimeout(() => {
       puppy.textContent = '🐶';
       puppy.className = '';
-      bubble.textContent = 'You can do it! 🐾';
+      bubble.textContent = 'Jij kunt het! 🐾';
       locked = false;
     }, 900);
   }
@@ -545,7 +545,7 @@ function resetPuppy() {
   const p = document.getElementById('puppy');
   p.textContent = '🐶';
   p.className = '';
-  document.getElementById('speech-bubble').textContent = "Here we go! 😊";
+  document.getElementById('speech-bubble').textContent = "Klaar voor de start! 😊";
 }
 
 function flashScreen() {
@@ -556,10 +556,10 @@ function flashScreen() {
 
 function randomPraise() {
   const list = [
-    'Yummy! 😋🦴', 'So delicious! 🎉', "You're so smart! ⭐",
-    'Woof woof! 🐾', 'That\'s right! 🎊', 'Amazing! 🌟',
-    'Great job! 👏', 'Biscuit says thanks! 😍', 'Correct! 🥳',
-    'Brilliant! 🌈',
+    'Lekker! 😋🦴', 'Zo lekker! 🎉', 'Jij bent zo slim! ⭐',
+    'Woef woef! 🐾', 'Dat klopt! 🎊', 'Waanzinnig! 🌟',
+    'Goed gedaan! 👏', 'Koekje zegt dankjewel! 😍', 'Correct! 🥳',
+    'Briljant! 🌈',
   ];
   return list[Math.floor(Math.random() * list.length)];
 }
@@ -569,9 +569,9 @@ function showWinScreen() {
   showScreen('win-screen');
   document.getElementById('win-stars').textContent = '⭐'.repeat(score);
   const msgs = [
-    [`You got all ${TOTAL}! You're a genius! 🏆`, score === TOTAL],
-    [`You got ${score} out of ${TOTAL} — Biscuit is full and happy! 🐶💕`, score >= 7],
-    [`You got ${score} out of ${TOTAL} — Good try! Play again to beat your score! 🎯`, true],
+    [`Je hebt alle ${TOTAL} goed! Jij bent een genie! 🏆`, score === TOTAL],
+    [`Je hebt ${score} van de ${TOTAL} goed — Koekje is vol en blij! 🐶💕`, score >= 7],
+    [`Je hebt ${score} van de ${TOTAL} goed — Goed geprobeerd! Speel nog eens! 🎯`, true],
   ];
   document.getElementById('win-message').textContent = msgs.find(([, cond]) => cond)[0];
   spawnConfetti(40);
